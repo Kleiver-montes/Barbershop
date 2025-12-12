@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Barbershop final</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barbería | Estilo y Precisión</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!-- Fuentes opcionales -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Georgia:wght@400;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <style>
+        /*
+        ===========================
+        PALETA DE COLORES
+        ===========================
+        Fondo: #1a1a1a
+        Header/Footer: #111111
+        Detalles: #c39d67
+        Texto: #e0e0e0
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Georgia", "Times New Roman", serif;
+            color: #e0e0e0;
+            letter-spacing: 1px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ===========================
+           HEADER + NAV
+        ============================ */
+
+        header {
+            background-color: #111111;
+            color: #e0e0e0;
+            padding: 0.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            padding: 0.5rem 0.9rem;
+            border-radius: 3px;
+            transition: color 0.3s, background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #c39d67;
+        }
+
+        .cta-nav {
+            border: 1px solid #c39d67;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .cta-nav:hover {
+            background-color: #c39d67;
+            color: #111111;
+        }
+
+        /* Botón hamburguesa (móvil) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle .hamburger {
+            width: 28px;
+            height: 3px;
+            background-color: #e0e0e0;
+            display: block;
+            position: relative;
+        }
+
+        .menu-toggle .hamburger::before,
+        .menu-toggle .hamburger::after {
+            content: "";
+            width: 28px;
+            height: 3px;
+            background-color: #e0e0e0;
+            position: absolute;
+            left: 0;
+        }
+
+        .menu-toggle .hamburger::before {
+            top: -7px;
+        }
+
+        .menu-toggle .hamburger::after {
+            bottom: -7px;
+        }
+
+        /* Contenido principal (las "páginas") */
+        .content-wrapper {
+            flex: 1;
+            margin-top: 90px; /* altura header */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-section {
+            display: none;
+            flex: 1;
+            background-color: #1a1a1a;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* ===========================
+           BOTÓN CTA GENERAL
+        ============================ */
+
+        .btn-cta {
+            background-color: #c39d67;
+            color: #1a1a1a;
+            padding: 0.9rem 1.8rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background-color: #a08050;
+            color: #111111;
+        }
+
+        /* ===========================
+           SECCIÓN INICIO (HERO)
+        ============================ */
+
+        .hero {
+            background-image: linear-gradient(
+                    to right,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.2)
+                ),
+                url("https://i.postimg.cc/WpYV1ChC/photo-1503951914875-452162b0f3f1.avif");
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            min-height: calc(100vh - 90px);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.3rem;
+            margin-bottom: 0.7rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 1.8rem;
+        }
+
+        /* ===========================
+           SERVICIOS DESTACADOS
+        ============================ */
+
+        .featured-services {
+            padding: 4rem 5%;
+            background-color: #111111;
+            text-align: center;
+        }
+
+        .featured-services h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-services > p {
+            color: #cccccc;
+            margin-bottom: 2.5rem;
+        }
+
+        .services-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            padding: 1.8rem 1.3rem;
+            border: 1px solid rgba(195, 157, 103, 0.2);
+            width: 23%;
+            min-width: 230px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+
+        .service-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #c39d67;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: #c39d67;
+        }
+
+        .service-card:hover::after {
+            transform: translateX(0);
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            color: #c39d67;
+            margin-bottom: 0.7rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            color: #dddddd;
+        }
+
+        .btn-details {
+            color: #c39d67;
+            border: 1px solid #c39d67;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 2px;
+        }
+
+        .btn-details:hover {
+            background-color: #c39d67;
+            color: #111111;
+        }
+
+        /* ===========================
+           GALERÍA
+        ============================ */
+
+        .gallery {
+            padding: 4rem 5%;
+            text-align: center;
+            background-color: #1a1a1a;
+        }
+
+        .gallery h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery .subtitle {
+            color: #cccccc;
+            margin-bottom: 2.5rem;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.9rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+
+        .overlay-text {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 0.7rem 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #c39d67;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .gallery-item:hover .overlay-text {
+            opacity: 1;
+        }
+
+        .gallery-cta {
+            margin-top: 0.5rem;
+        }
+
+        /* ===========================
+           SOBRE NOSOTROS
+        ============================ */
+
+        .about-hero {
+            background-image: linear-gradient(
+                    rgba(0, 0, 0, 0.7),
+                    rgba(0, 0, 0, 0.7)
+                ),
+                url("https://i.postimg.cc/WpYV1ChC/photo-1503951914875-452162b0f3f1.avif");
+            background-size: cover;
+            background-position: center 30%;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .about-hero .title-gold {
+            font-size: 1rem;
+            color: #c39d67;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 0.6rem;
+        }
+
+        .about-hero h1 {
+            font-size: 2.7rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-section {
+            max-width: 1200px;
+            margin: 3.5rem auto;
+            display: flex;
+            background-color: #111111;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .mission-image-wrapper {
+            flex: 1;
+        }
+
+        .mission-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mission-content {
+            flex: 1;
+            padding: 2.3rem;
+        }
+
+        .mission-content .title-gold-small {
+            font-size: 0.95rem;
+            color: #c39d67;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .mission-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .mission-content p {
+            color: #cccccc;
+            margin-bottom: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        .key-values {
+            display: flex;
+            gap: 0.9rem;
+            margin-top: 1.4rem;
+        }
+
+        .value-item {
+            flex: 1;
+            text-align: center;
+            border-radius: 4px;
+            border: 1px solid rgba(195, 157, 103, 0.2);
+            padding: 0.9rem 0.6rem;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .value-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+            border-color: #c39d67;
+        }
+
+        .value-item i {
+            font-size: 1.9rem;
+            color: #c39d67;
+            margin-bottom: 0.4rem;
+        }
+
+        .value-item span {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* EQUIPO */
+
+        .team-section {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        .team-section .title-gold {
+            font-size: 1rem;
+            color: #c39d67;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .team-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .barber-cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .barber-card {
+            background-color: #111111;
+            width: 290px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border-top: 4px solid #c39d67;
+            transition: transform 0.3s;
+        }
+
+        .barber-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .barber-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .barber-info {
+            padding: 1.1rem;
+        }
+
+        .barber-info h4 {
+            margin-bottom: 0.3rem;
+        }
+
+        .barber-info .role {
+            color: #c39d67;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .barber-info .specialty {
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        .team-cta {
+            margin-top: 0.5rem;
+        }
+
+        /* ===========================
+           AGENDAR CITA
+        ============================ */
+
+        .booking-section {
+            padding: 3rem 5% 4rem;
+            text-align: center;
+        }
+
+        .booking-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-section .subtitle {
+            color: #cccccc;
+            margin-bottom: 2.5rem;
+        }
+
+        .booking-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: #111111;
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .booking-form-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-inputs {
+            background-color: #1a1a1a;
+            padding: 1.3rem;
+            border-radius: 5px;
+            border: 1px solid rgba(195, 157, 103, 0.15);
+            text-align: left;
+        }
+
+        .select-wrapper {
+            margin-bottom: 1.1rem;
+        }
+
+        .select-wrapper label {
+            display: block;
+            color: #c39d67;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.7rem;
+            font-size: 0.95rem;
+            background-color: #333333;
+            color: #e0e0e0;
+            border-radius: 3px;
+            border: 1px solid #c39d67;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #e0e0e0;
+        }
+
+        .calendar-module {
+            background-color: #1a1a1a;
+            padding: 1.3rem;
+            border-radius: 5px;
+            border: 1px solid rgba(195, 157, 103, 0.15);
+        }
+
+        .calendar-module h3 {
+            color: #c39d67;
+            margin-bottom: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.7rem;
+        }
+
+        #current-month-year {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .nav-month {
+            background: none;
+            border: none;
+            color: #c39d67;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .calendar-grid {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .calendar-grid th {
+            padding: 0.4rem 0;
+            color: #c39d67;
+            font-weight: normal;
+        }
+
+        .calendar-grid td {
+            text-align: center;
+            padding: 0.1rem 0;
+        }
+
+        .calendar-grid .day {
+            display: inline-block;
+            width: 100%;
+            border-radius: 3px;
+            padding: 0.4rem 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .calendar-grid .day:hover:not(.disabled):not(.selected) {
+            background-color: #333333;
+        }
+
+        .calendar-grid .day.selected {
+            background-color: #c39d67;
+            color: #111111;
+            font-weight: bold;
+        }
+
+        .calendar-grid .day.disabled {
+            color: #555555;
+            cursor: not-allowed;
+        }
+
+        .time-slots-container {
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed #333333;
+        }
+
+        .time-slots-container.hidden {
+            display: none;
+        }
+
+        .slots-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+        }
+
+        .time-slot {
+            padding: 0.4rem 0.8rem;
+            border-radius: 3px;
+            background-color: #333333;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 1px solid #333333;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .time-slot:hover {
+            background-color: #444444;
+        }
+
+        .time-slot.selected {
+            background-color: #c39d67;
+            color: #111111;
+            border-color: #c39d67;
+            font-weight: bold;
+        }
+
+        #book-appointment-btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        #book-appointment-btn.disabled {
+            background-color: #555555;
+            color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Tarjeta barbero / servicio */
+
+        .barber-card-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .barber-card {
+            background-color: #1a1a1a;
+            padding: 1.2rem;
+            max-width: 320px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid rgba(195, 157, 103, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-frame {
+            border: 3px solid #c39d67;
+            border-radius: 5px;
+            padding: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .barber-card img {
+            width: 100%;
+            display: block;
+            border-radius: 3px;
+            max-height: 340px;
+            object-fit: cover;
+        }
+
+        .card-details {
+            text-align: center;
+        }
+
+        .card-details p {
+            font-size: 0.9rem;
+            color: #c39d67;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-details h4 {
+            font-size: 1.2rem;
+        }
+
+        /* ===========================
+           CONTACTO
+        ============================ */
+
+        .contact-section {
+            padding: 3.5rem 5%;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-section .subtitle {
+            color: #cccccc;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #111111;
+            border-radius: 8px;
+            padding: 2.1rem;
+            display: flex;
+            gap: 2rem;
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .contact-info-map {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-details-wrapper {
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            padding: 1.4rem;
+            border: 1px solid rgba(195, 157, 103, 0.15);
+        }
+
+        .contact-details-wrapper h3 {
+            color: #c39d67;
+            margin-bottom: 0.9rem;
+        }
+
+        .contact-details-wrapper p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .icon-gold {
+            color: #c39d67;
+            width: 22px;
+            text-align: center;
+            margin-right: 0.6rem;
+        }
+
+        .contact-details-wrapper .schedule {
+            margin-top: 0.8rem;
+            padding-top: 0.7rem;
+            border-top: 1px dashed #333333;
+            color: #cccccc;
+        }
+
+        .map-container {
+            border: 3px solid #c39d67;
+            border-radius: 5px;
+            overflow: hidden;
+            min-height: 260px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 260px;
+            border: none;
+        }
+
+        .contact-form-wrapper {
+            flex: 1;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            padding: 1.6rem;
+            border: 1px solid rgba(195, 157, 103, 0.15);
+        }
+
+        .contact-form-wrapper h3 {
+            text-align: center;
+            margin-bottom: 1.3rem;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #c39d67;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 3px;
+            border: 1px solid #444444;
+            background-color: #333333;
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #c39d67;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ===========================
+           FOOTER
+        ============================ */
+
+        footer {
+            background-color: #111111;
+            color: #e0e0e0;
+            padding: 2rem 5% 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .footer-logo img {
+            height: 65px;
+            width: auto;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .footer-nav a {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .footer-nav a:hover {
+            color: #c39d67;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-social .social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            background-color: #c39d67;
+            color: #111111;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .footer-social .social-icon:hover {
+            background-color: #a08050;
+        }
+
+        /* 🔥 Botón Footer NEGRO CON DORADO */
+        .btn-footer-cta {
+            background-color: #111111; /* negro */
+            color: #c39d67; /* dorado */
+            border: 1px solid #c39d67;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-footer-cta:hover {
+            background-color: #c39d67;
+            color: #111111;
+        }
+
+        .footer-copyright {
+            border-top: 1px solid rgba(195, 157, 103, 0.15);
+            padding-top: 0.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777777;
+        }
+
+        /* ===========================
+           RESPONSIVE
+        ============================ */
+
+        @media (max-width: 1024px) {
+            .services-container {
+                justify-content: center;
+            }
+            .service-card {
+                width: 45%;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .mission-section {
+                flex-direction: column;
+            }
+            .mission-image-wrapper {
+                max-height: 280px;
+            }
+            .mission-image-wrapper img {
+                height: 100%;
+            }
+        }
+
+        @media (max-width: 850px) {
+            header {
+                flex-direction: row;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #111111;
+                flex-direction: column;
+                padding: 0.8rem 0;
+                gap: 0;
+                display: none;
+            }
+
+            nav.mobile-nav-open {
+                display: flex;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 0.9rem 0;
+                border-radius: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .content-wrapper {
+                margin-top: 80px;
+            }
+
+            .hero {
+                min-height: calc(100vh - 80px);
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .booking-container,
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .barber-card-wrapper {
+                order: -1;
+            }
+
+            .team-section {
+                padding: 0 1.5rem 3rem;
+            }
+
+            .mission-section {
+                margin: 2.5rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                width: 100%;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-nav {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .booking-section h2,
+            .contact-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">
+                <img
+                    src="https://i.postimg.cc/CMXK63Mg/9e077939-b4af-4910-809c-ed7bd06b4156.png"
+                    alt="Logo Barbería"
+                    onclick="showPage('inicio')"
+                    style="cursor:pointer"
+                />
+            </div>
+
+            <nav id="main-nav">
+                <span class="nav-link active" data-page="inicio" onclick="showPage('inicio')"
+                    >Inicio</span
+                >
+                <span class="nav-link" data-page="nosotros" onclick="showPage('nosotros')"
+                    >Sobre Nosotros</span
+                >
+                <span
+                    class="nav-link cta-nav"
+                    data-page="agendar"
+                    onclick="showPage('agendar')"
+                    >Agendar Cita</span
+                >
+                <span class="nav-link" data-page="contacto" onclick="showPage('contacto')"
+                    >Contacto</span
+                >
+            </nav>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <span class="hamburger"></span>
+            </button>
+        </header>
+
+        <!-- CONTENIDO -->
+        <div class="content-wrapper">
+            <!-- INICIO -->
+            <section id="inicio" class="page-section active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>Estilo que marca tu identidad.</h1>
+                        <p>
+                            Más que un corte, una declaración. Tu espacio para la perfección masculina.
+                        </p>
+                        <button class="btn-cta" onclick="showPage('agendar')">
+                            Reservar ahora
+                        </button>
+                    </div>
+                </div>
+
+                <section class="featured-services">
+                    <h2>NUESTROS SERVICIOS</h2>
+                    <p>
+                        Explora la gama completa de nuestros servicios, diseñados para el hombre
+                        moderno que valora la precisión y el estilo.
+                    </p>
+
+                    <div class="services-container">
+                        <div class="service-card">
+                            <h3>Corte Clásico y Moderno</h3>
+                            <p>
+                                Desde el fade más contemporáneo hasta los estilos atemporales. Precisión
+                                en cada detalle.
+                            </p>
+                            <span class="btn-details">Ver detalles</span>
+                        </div>
+
+                        <div class="service-card">
+                            <h3>Afeitado a Navaja Tradicional</h3>
+                            <p>
+                                La experiencia definitiva de un afeitado con toallas calientes y
+                                productos de primera.
+                            </p>
+                            <span class="btn-details">Ver detalles</span>
+                        </div>
+
+                        <div class="service-card">
+                            <h3>Arreglo de Barba y Bigote</h3>
+                            <p>
+                                Diseño y mantenimiento experto para una barba impecable que realza tu
+                                rostro.
+                            </p>
+                            <span class="btn-details">Ver detalles</span>
+                        </div>
+
+                        <div class="service-card">
+                            <h3>Tratamientos Capilares</h3>
+                            <p>
+                                Cuidado completo para tu cabello y cuero cabelludo, para una apariencia
+                                saludable y radiante.
+                            </p>
+                            <span class="btn-details">Ver detalles</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="gallery">
+                    <h2>NUESTROS MEJORES TRABAJOS</h2>
+                    <p class="subtitle">
+                        Explora nuestra selección de cortes y afeitados de precisión. La prueba de
+                        nuestro compromiso con la excelencia.
+                    </p>
+
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img
+                                src="https://i.postimg.cc/GtMWf8sk/taper-fade-el-corte-de-pelo-del-momento.webp"
+                                alt="Taper Fade"
+                            />
+                            <div class="overlay-text">Taper Fade</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img
+                                src="https://i.postimg.cc/vmB3Pqt2/afeitado2.jpg"
+                                alt="Afeitado Tradicional"
+                            />
+                            <div class="overlay-text">Afeitado Tradicional</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img
+                                src="https://i.postimg.cc/9X6XCs4V/Short-Undercut-with-Textured-Top.jpg"
+                                alt="Diseño de Barba"
+                            />
+                            <div class="overlay-text">Diseño de Barba</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img
+                                src="https://i.postimg.cc/vBnjz2QM/ajdd-qsat-shʿr-rjaly-klasyk-mwdt-2023.jpg"
+                                alt="Corte Clásico"
+                            />
+                            <div class="overlay-text">Corte Clásico</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img
+                                src="https://i.postimg.cc/W3VmB5Mf/R.jpg"
+                                alt="Pompadour"
+                            />
+                            <div class="overlay-text">Pompadour</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img
+                                src="https://i.postimg.cc/brsZWnBN/A-Complete-Guide-To-Number-2-Fade-Hairstyles-With-Photos-copy-768x512.jpg"
+                                alt="Perfilado"
+                            />
+                            <div class="overlay-text">Perfilado</div>
+                        </div>
+                    </div>
+
+                    <button class="btn-cta gallery-cta" onclick="showPage('agendar')">
+                        Reservar cita
+                    </button>
+                </section>
+            </section>
+
+            <!-- SOBRE NOSOTROS -->
+            <section id="nosotros" class="page-section">
+                <div class="about-hero">
+                    <div>
+                        <span class="title-gold">Nuestra historia</span>
+                        <h1>La precisión es nuestro legado.</h1>
+                        <button class="btn-cta" onclick="showPage('agendar')">
+                            Reserva con nosotros
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mission-section">
+                    <div class="mission-image-wrapper">
+                        <img
+                            src="https://i.postimg.cc/PqF0T02f/trabajo-barbero-1.jpg"
+                            alt="Barbero trabajando"
+                        />
+                    </div>
+                    <div class="mission-content">
+                        <span class="title-gold-small">Nuestra Filosofía</span>
+                        <h2>Cultivamos la excelencia</h2>
+                        <p>
+                            Desde 2015, [Nombre de la Barbería] se ha dedicado a redefinir el cuidado
+                            masculino. No solo cortamos cabello y arreglamos barbas; somos artesanos del
+                            estilo, creando una declaración de identidad para cada cliente.
+                        </p>
+                        <p>
+                            Nuestra misión es simple: fusionar la técnica clásica de la barbería
+                            tradicional con las tendencias modernas, utilizando productos de la más alta
+                            calidad y ofreciendo una experiencia inigualable.
+                        </p>
+
+                        <div class="key-values">
+                            <div class="value-item">
+                                <i class="fas fa-cut"></i>
+                                <span>Precisión Experta</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-hot-tub"></i>
+                                <span>Ritual Clásico</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-handshake"></i>
+                                <span>Confianza y Estilo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-section">
+                    <span class="title-gold">El equipo</span>
+                    <h3>Conoce a nuestros maestros barberos</h3>
+
+                    <div class="barber-cards-grid">
+                        <div class="barber-card">
+                            <img
+                                src="https://i.postimg.cc/3wzdYGX9/12069300-m.jpg"
+                                alt="Pedro Alvares"
+                            />
+                            <div class="barber-info">
+                                <h4>Pedro Alvares</h4>
+                                <p class="role">Barbero Principal & Fundador</p>
+                                <p class="specialty">
+                                    Especialista en afeitado clásico y estilo Pompadour.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="barber-card">
+                            <img
+                                src="https://i.postimg.cc/GpPG7qwR/c870x524.jpg"
+                                alt="Juan Montes"
+                            />
+                            <div class="barber-info">
+                                <h4>Juan Montes</h4>
+                                <p class="role">Barbero Senior</p>
+                                <p class="specialty">
+                                    Maestro en fades, taper y diseño de líneas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="barber-card">
+                            <img
+                                src="https://i.postimg.cc/L4j5znSJ/peluquero-creando-peinado-nina-salon-belleza-generative-by-ai-893571-9219.avif"
+                                alt="Luis Soto"
+                            />
+                            <div class="barber-info">
+                                <h4>Luis Soto</h4>
+                                <p class="role">Barbero Junior</p>
+                                <p class="specialty">
+                                    Experto en arreglo y mantenimiento de barbas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-cta team-cta" onclick="showPage('agendar')">
+                        Reserva con un experto
+                    </button>
+                </div>
+            </section>
+
+            <!-- AGENDAR CITA -->
+            <section id="agendar" class="page-section">
+                <section class="booking-section">
+                    <h2>RESERVA TU PRÓXIMA CITA</h2>
+                    <p class="subtitle">
+                        Elige el servicio, tu barbero y selecciona una hora disponible en el
+                        calendario.
+                    </p>
+
+                    <div class="booking-container">
+                        <div class="booking-form-wrapper">
+                            <div class="form-inputs">
+                                <div class="select-wrapper">
+                                    <label for="service-select">1. Selecciona el servicio</label>
+                                    <select id="service-select">
+                                        <option value="" disabled selected>
+                                            -- Selecciona un servicio --
+                                        </option>
+                                        <option value="corte">
+                                            Corte Clásico / Moderno (30 min)
+                                        </option>
+                                        <option value="afeitado">
+                                            Afeitado a Navaja (45 min)
+                                        </option>
+                                        <option value="barba">Arreglo de Barba (20 min)</option>
+                                    </select>
+                                </div>
+
+                                <div class="select-wrapper">
+                                    <label for="barber-select">2. Selecciona el Barbero</label>
+                                    <select id="barber-select">
+                                        <option value="cualquiera" selected>
+                                            Cualquiera / Disponible
+                                        </option>
+                                        <option value="pedro">Pedro (Experto en Fades)</option>
+                                        <option value="juan">Juan (Especialista en Barba)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="calendar-module">
+                                <h3>3. Selecciona la fecha</h3>
+                                <div class="calendar-header">
+                                    <button class="nav-month prev-month">&lt;</button>
+                                    <span id="current-month-year"></span>
+                                    <button class="nav-month next-month">&gt;</button>
+                                </div>
+
+                                <table class="calendar-grid">
+                                    <thead>
+                                        <tr>
+                                            <th>Lun</th>
+                                            <th>Mar</th>
+                                            <th>Mié</th>
+                                            <th>Jue</th>
+                                            <th>Vie</th>
+                                            <th>Sáb</th>
+                                            <th>Dom</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="calendar-body"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="form-inputs">
+                                <div
+                                    id="time-slots-container"
+                                    class="time-slots-container hidden"
+                                >
+                                    <label>4. Selecciona la hora</label>
+                                    <div id="slots-grid" class="slots-grid"></div>
+                                </div>
+
+                                <button
+                                    id="book-appointment-btn"
+                                    class="btn-cta disabled"
+                                    disabled
+                                >
+                                    Confirmar reserva
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="barber-card-wrapper">
+                            <div class="barber-card">
+                                <div class="card-frame">
+                                    <img
+                                        id="barber-image"
+                                        src="https://i.postimg.cc/YCHQJ5dh/descarga.webp"
+                                        alt="Barbero / Servicio seleccionado"
+                                    />
+                                </div>
+                                <div class="card-details">
+                                    <p id="selected-service-display">BARBERSHOP</p>
+                                    <h4 id="selected-barber-display">Elige tu estilista</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- CONTACTO -->
+            <section id="contacto" class="page-section">
+                <section class="contact-section">
+                    <h2>CONTACTO</h2>
+                    <p class="subtitle">
+                        Encuéntranos o envíanos un mensaje. ¡Estamos listos para atenderte!
+                    </p>
+
+                    <div class="contact-container">
+                        <div class="contact-info-map">
+                            <div class="contact-details-wrapper">
+                                <h3>Nuestra Barbería</h3>
+                                <p>
+                                    <i class="fas fa-map-marker-alt icon-gold"></i>
+                                    Calle Liberia, Centro, Ciudad
+                                </p>
+                                <p>
+                                    <i class="fas fa-phone-alt icon-gold"></i> +506 8523 7603
+                                </p>
+                                <p>
+                                    <i class="fab fa-whatsapp icon-gold"></i> +506 8523 7603
+                                </p>
+                                <p>
+                                    <i class="far fa-envelope icon-gold"></i>
+                                    kleivercito@gmail.com
+                                </p>
+                                <p class="schedule">
+                                    <i class="far fa-clock icon-gold"></i>
+                                    Lun-Vie: 9:00 - 19:00 | Sáb: 10:00 - 18:00
+                                </p>
+                            </div>
+
+                            <div class="map-container">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.280145293297!2d-122.41941568468115!3d37.7749297797592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858087e91d8e17%3A0xc0f1b2c2f2c8d2d!2sGolden%20Gate%20Bridge!5e0!3m2!1ses!2scl!4v1678912345678!5m2!1ses!2scl"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                ></iframe>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-wrapper">
+                            <h3>Envíanos un mensaje</h3>
+                            <form class="contact-form">
+                                <div class="form-group">
+                                    <label for="name">Nombre</label>
+                                    <input type="text" id="name" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Asunto</label>
+                                    <input type="text" id="subject" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Mensaje</label>
+                                    <textarea id="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn-cta">
+                                    Enviar mensaje
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img
+                        src="https://i.postimg.cc/CMXK63Mg/9e077939-b4af-4910-809c-ed7bd06b4156.png"
+                        alt="Logo Barbería"
+                    />
+                </div>
+
+                <div class="footer-nav">
+                    <a onclick="showPage('inicio')">Inicio</a>
+                    <a onclick="showPage('nosotros')">Sobre Nosotros</a>
+                    <a onclick="showPage('contacto')">Contacto</a>
+                </div>
+
+                <div class="footer-social">
+                    <a href="#" target="_blank" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+
+                <button class="btn-footer-cta" onclick="showPage('agendar')">
+                    Reservar ahora
+                </button>
+            </div>
+
+            <div class="footer-copyright">
+                <p>&copy; 2025 Nombre de la Barbería. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        /* ====== CAMBIO DE "PÁGINA" (SECCIONES) ====== */
+        function showPage(pageId) {
+            // Secciones
+            const sections = document.querySelectorAll(".page-section");
+            sections.forEach((section) => {
+                section.classList.remove("active");
+            });
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add("active");
+
+            // Links del header
+            const navLinks = document.querySelectorAll(".nav-link");
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.dataset.page === pageId) {
+                    link.classList.add("active");
+                }
+            });
+
+            // Cerrar menú móvil si está abierto
+            const mainNav = document.getElementById("main-nav");
+            mainNav.classList.remove("mobile-nav-open");
+
+            // Subir al inicio
+            window.scrollTo(0, 0);
+        }
+
+        /* ====== MENÚ HAMBURGUESA ====== */
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById("menu-toggle");
+            const mainNav = document.getElementById("main-nav");
+
+            menuToggle.addEventListener("click", () => {
+                mainNav.classList.toggle("mobile-nav-open");
+            });
+
+            // Cerrar al hacer click en un nav-link
+            const navLinks = mainNav.querySelectorAll(".nav-link");
+            navLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    mainNav.classList.remove("mobile-nav-open");
+                });
+            });
+        });
+
+        /* ====== LÓGICA DE RESERVA (AGENDAR) ====== */
+        document.addEventListener("DOMContentLoaded", () => {
+            const barbersData = {
+                pedro: {
+                    name: "Pedro (Experto en Fades)",
+                    img: "https://i.postimg.cc/3r0r2d37/mejoresbarberos.webp",
+                },
+                juan: {
+                    name: "Juan (Especialista en Barba)",
+                    img: "https://i.postimg.cc/Bvy9vBLy/OIP-(1).webp",
+                },
+            };
+
+            const servicesData = {
+                corte: {
+                    name: "Corte Clásico / Moderno",
+                    img: "https://i.postimg.cc/Nf3wY4X4/OIP-(2).webp",
+                },
+                afeitado: {
+                    name: "Afeitado a Navaja",
+                    img: "https://i.postimg.cc/jj5V4F0B/OIP-(3).webp",
+                },
+                barba: {
+                    name: "Arreglo de Barba",
+                    img: "https://i.postimg.cc/s2B6XdRT/OIP-(4).webp",
+                },
+            };
+
+            const DEFAULT_BARBER_IMAGE =
+                "https://i.postimg.cc/YCHQJ5dh/descarga.webp";
+
+            const calendarBody = document.getElementById("calendar-body");
+            const currentMonthYear =
+                document.getElementById("current-month-year");
+            const prevMonthBtn = document.querySelector(".prev-month");
+            const nextMonthBtn = document.querySelector(".next-month");
+            const serviceSelect = document.getElementById("service-select");
+            const barberSelect = document.getElementById("barber-select");
+            const timeSlotsContainer = document.getElementById(
+                "time-slots-container"
+            );
+            const slotsGrid = document.getElementById("slots-grid");
+            const bookBtn = document.getElementById("book-appointment-btn");
+            const selectedServiceDisplay = document.getElementById(
+                "selected-service-display"
+            );
+            const selectedBarberDisplay = document.getElementById(
+                "selected-barber-display"
+            );
+            const barberImg = document.getElementById("barber-image");
+
+            if (!calendarBody) return; // por si (por error) falta el HTML
+
+            let currentDate = new Date();
+            let selectedDate = null;
+            let selectedSlot = null;
+            let selectedService = null;
+
+            const availableSlots = [
+                "9:00",
+                "9:30",
+                "10:00",
+                "10:30",
+                "11:00",
+                "11:30",
+                "13:00",
+                "13:30",
+                "14:00",
+                "14:30",
+                "15:00",
+                "15:30",
+                "16:00",
+                "16:30",
+                "17:00",
+            ];
+
+            function getFakeAvailability(date) {
+                const day = date.getDate();
+                let occupied = [];
+                if (day % 3 === 0) {
+                    occupied = ["10:00", "14:30", "16:00"];
+                }
+                const free = availableSlots.filter(
+                    (slot) => !occupied.includes(slot)
+                );
+                return { free, occupied };
+            }
+
+            function updateBarberCard() {
+                const barberVal = barberSelect.value;
+                const serviceVal = serviceSelect.value;
+
+                if (barberVal !== "cualquiera" && barbersData[barberVal]) {
+                    const data = barbersData[barberVal];
+                    selectedBarberDisplay.textContent = data.name;
+                    barberImg.src = data.img;
+                } else if (serviceVal && servicesData[serviceVal]) {
+                    const data = servicesData[serviceVal];
+                    selectedBarberDisplay.textContent = "Elige tu estilista";
+                    barberImg.src = data.img;
+                } else {
+                    selectedBarberDisplay.textContent = "Elige tu estilista";
+                    barberImg.src = DEFAULT_BARBER_IMAGE;
+                }
+
+                const serviceText =
+                    serviceSelect.options[serviceSelect.selectedIndex]
+                        ?.text || "";
+                selectedServiceDisplay.textContent = serviceText.includes(
+                    "Selecciona"
+                )
+                    ? "BARBERSHOP"
+                    : serviceText.split("(")[0].trim().toUpperCase();
+            }
+
+            function renderCalendar(date) {
+                calendarBody.innerHTML = "";
+                const year = date.getFullYear();
+                const month = date.getMonth();
+
+                currentMonthYear.textContent = date.toLocaleDateString(
+                    "es-ES",
+                    {
+                        month: "long",
+                        year: "numeric",
+                    }
+                );
+
+                const firstDay = new Date(year, month, 1).getDay(); // 0 domingo
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                let startDay = firstDay === 0 ? 6 : firstDay - 1;
+                let dayCounter = 1;
+
+                for (let i = 0; i < 6; i++) {
+                    const row = calendarBody.insertRow();
+                    for (let j = 0; j < 7; j++) {
+                        const cell = row.insertCell();
+
+                        if (i === 0 && j < startDay) {
+                            cell.classList.add("empty");
+                            cell.textContent = "";
+                        } else if (dayCounter <= daysInMonth) {
+                            const thisDate = new Date(
+                                year,
+                                month,
+                                dayCounter
+                            );
+                            const span = document.createElement("span");
+                            span.classList.add("day");
+                            span.textContent = dayCounter;
+                            cell.appendChild(span);
+
+                            const iso = thisDate
+                                .toISOString()
+                                .split("T")[0];
+                            cell.dataset.date = iso;
+
+                            const todayMid = new Date();
+                            todayMid.setHours(0, 0, 0, 0);
+                            if (thisDate < todayMid) {
+                                span.classList.add("disabled");
+                            }
+                            if (selectedDate === iso) {
+                                span.classList.add("selected");
+                            }
+
+                            dayCounter++;
+                        } else {
+                            cell.classList.add("empty");
+                            cell.textContent = "";
+                        }
+                    }
+                }
+            }
+
+            function renderTimeSlots(date) {
+                timeSlotsContainer.classList.remove("hidden");
+                slotsGrid.innerHTML = "";
+                selectedSlot = null;
+
+                const { free } = getFakeAvailability(date);
+                if (!free.length) {
+                    slotsGrid.innerHTML =
+                        '<p style="color:#c39d67;font-size:0.85rem;">No hay citas disponibles para este día.</p>';
+                    checkBookingReadiness();
+                    return;
+                }
+
+                free.forEach((slot) => {
+                    const div = document.createElement("div");
+                    div.classList.add("time-slot");
+                    div.dataset.time = slot;
+                    div.textContent = slot;
+                    slotsGrid.appendChild(div);
+                });
+
+                checkBookingReadiness();
+            }
+
+            function resetSlots() {
+                selectedSlot = null;
+                timeSlotsContainer.classList.add("hidden");
+                slotsGrid.innerHTML = "";
+            }
+
+            function checkBookingReadiness() {
+                const serviceSelected = serviceSelect.value !== "";
+                if (selectedDate && selectedSlot && serviceSelected) {
+                    bookBtn.classList.remove("disabled");
+                    bookBtn.disabled = false;
+                } else {
+                    bookBtn.classList.add("disabled");
+                    bookBtn.disabled = true;
+                }
+            }
+
+            prevMonthBtn.addEventListener("click", () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                selectedDate = null;
+                renderCalendar(currentDate);
+                resetSlots();
+                checkBookingReadiness();
+            });
+
+            nextMonthBtn.addEventListener("click", () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                selectedDate = null;
+                renderCalendar(currentDate);
+                resetSlots();
+                checkBookingReadiness();
+            });
+
+            calendarBody.addEventListener("click", (e) => {
+                const target = e.target;
+                if (!target.classList.contains("day")) return;
+                if (target.classList.contains("disabled")) return;
+
+                if (serviceSelect.value === "") {
+                    alert("Paso 1: primero selecciona un servicio.");
+                    return;
+                }
+
+                document
+                    .querySelectorAll(".calendar-grid .day.selected")
+                    .forEach((d) => d.classList.remove("selected"));
+                target.classList.add("selected");
+
+                const cell = target.closest("td");
+                selectedDate = cell.dataset.date;
+                selectedService = serviceSelect.value;
+
+                renderTimeSlots(new Date(selectedDate));
+                checkBookingReadiness();
+            });
+
+            slotsGrid.addEventListener("click", (e) => {
+                const target = e.target;
+                if (!target.classList.contains("time-slot")) return;
+
+                document
+                    .querySelectorAll(".time-slot.selected")
+                    .forEach((slot) => slot.classList.remove("selected"));
+                target.classList.add("selected");
+                selectedSlot = target.dataset.time;
+                checkBookingReadiness();
+            });
+
+            serviceSelect.addEventListener("change", () => {
+                selectedService = serviceSelect.value;
+                if (selectedDate) {
+                    renderTimeSlots(new Date(selectedDate));
+                } else {
+                    resetSlots();
+                }
+                updateBarberCard();
+                checkBookingReadiness();
+            });
+
+            barberSelect.addEventListener("change", () => {
+                updateBarberCard();
+            });
+
+            bookBtn.addEventListener("click", () => {
+                if (!selectedDate || !selectedSlot || !selectedService) return;
+                const barberText =
+                    barberSelect.options[barberSelect.selectedIndex].text;
+                alert(
+                    `¡Cita agendada!\n\nDía: ${selectedDate}\nHora: ${selectedSlot}\nServicio: ${
+                        servicesData[selectedService].name
+                    }\nBarbero: ${barberText}`
+                );
+
+                // Reset
+                resetSlots();
+                selectedDate = null;
+                selectedSlot = null;
+                serviceSelect.selectedIndex = 0;
+                barberSelect.selectedIndex = 0;
+                currentDate = new Date();
+                renderCalendar(currentDate);
+                updateBarberCard();
+                checkBookingReadiness();
+            });
+
+            renderCalendar(currentDate);
+            updateBarberCard();
+            checkBookingReadiness();
+        });
+
+        /* ====== FORMULARIO DE CONTACTO ====== */
+        document.addEventListener("DOMContentLoaded", () => {
+            const contactForm = document.querySelector(".contact-form");
+            if (!contactForm) return;
+
+            contactForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                alert(
+                    "¡Mensaje enviado con éxito! Te contactaremos lo antes posible."
+                );
+                contactForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
